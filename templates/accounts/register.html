@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="signup-container bg-light">
+
+    <div class="signup-form">
+        <div class="w-75 text-center">
+            <h1 class="text-center">Instagram</h1>
+            <h6 class="text-center text-muted mt-3">Regístrate para ver fotos y videos de tus amigos</h6>
+        </div>
+        
+        <form action="{% url 'register' %}" method="POST" class="w-100">
+            {% csrf_token %} 
+            {{ form }}
+            <button type="submit" class="btn btn-sm btn-primary mt-3 font-weight-bold text-white">Registrarte</button>      
+        </form>
+
+        <div class="w-75 text-center mt-3 text-secondary">
+            <p>
+                Al registrarte, aceptas nuestras 
+                <b>Condiciones</b>, <b>la Política de datos</b> y la <b>Política de cookies.</b>
+            </p>
+        </div>
+
+    </div>
+    <div class="signup-to-signin mt-3">
+        <span>¿Tienes una cuenta? <a class="font-weight-bold" href="{% url 'signin' %}">Entrar</a></span>
+    </div>
+</div>
+
+{% endblock body %}

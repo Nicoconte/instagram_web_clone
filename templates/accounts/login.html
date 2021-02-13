@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="signin-container bg-light">
+
+    <div class="signin-form">
+        <div class="w-75 text-center">
+            <h1 class="text-center mb-4">Instagram</h1>
+        </div>
+        
+        <form action="{% url 'auth' %}" method="POST" class="w-100">
+            {% csrf_token %} 
+            {{ form }}
+            <button type="submit" class="btn btn-sm btn-primary mt-3 font-weight-bold">Iniciar sesión</button>      
+        </form>
+
+        <p class="mt-5 font-weight-bold" style="font-size:13px;"><i class="fa fa-facebook-official"></i> Iniciar sesión con Facebook</p>
+
+        <p class="mt-1">¿Has olvidado la contraseña?</p>
+
+        {% if error_msg %}
+            <p class="text-center text-danger mt-2">{{ error_msg }}</p>
+        {% endif %}
+
+    </div>
+    <div class="signin-to-signup mt-3">
+        <span>¿No Tienes una cuenta? <a class="font-weight-bold" href="{% url 'signup' %}">Registrate</a></span>
+    </div>
+</div>
+
+{% endblock body %}

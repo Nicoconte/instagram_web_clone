@@ -1,0 +1,139 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+
+body {
+    width:100%;
+    height:auto;
+}
+
+#main-container {
+    width: 100%;
+    height:661px;
+}
+
+#image-preload {
+    width:100%;
+    height:661px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+* Signup page
+*/
+.signup-container {
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signup-form, .signup-to-signin {
+    width: 25%;
+    height: 73%;
+    border: 1px solid rgb(141, 141, 141, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.signup-form form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signup-form h1 {
+    font-family: 'Lobster', cursive;
+}
+
+.signup-form p {
+    font-size:12px;
+}
+
+.signup-to-signin {
+    height:10%;
+}
+
+.signup-to-signin span {
+    font-size:14px;
+}
+
+.signup-form input, button{
+    width:80%;
+    font-size:12px;
+}
+
+/*
+* Signin Page
+*/
+.signin-container {
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signin-form, .signin-to-signup {
+    width: 25%;
+    height: 60%;
+    border: 1px solid rgb(141, 141, 141, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.signin-form form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.signin-form h1 {
+    font-family: 'Lobster', cursive;
+}
+
+.signin-form i {
+    color:#3b5998;
+    font-size:20px;
+}
+
+.signin-form p {
+    color:#3b5998;
+    font-size:12px;
+}
+
+.signin-to-signup {
+    height:10%;
+}
+
+.signin-to-signup span {
+    font-size:14px;
+}
+
+.signin-form input, button {
+    width:80%;
+    font-size:12px;
+}
+
+
+@media (min-width:300px) and (max-width:900px) {
+    .signup-form, .signup-to-signin {
+        width:70%;
+    }
+}
