@@ -24,6 +24,10 @@
             </p>
         </div>
 
+        {% if error_msg %}
+            <p class="text-center text-danger mt-2">{{ error_msg }}</p>
+        {% endif %}
+        
     </div>
     <div class="signup-to-signin mt-3">
         <span>¿Tienes una cuenta? <a class="font-weight-bold" href="{% url 'signin' %}">Entrar</a></span>

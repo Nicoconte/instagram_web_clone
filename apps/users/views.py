@@ -73,10 +73,7 @@ def user_login(request):
 
                 login(request, user)
  
-                return render(request, "accounts/login.html", {
-                    "error_msg" : "Inicio de sesion",
-                    "form" : form
-                })
+                return HttpResponseRedirect(reverse('home'))
 
             else:
                 raise Exception
@@ -89,6 +86,13 @@ def user_login(request):
             "error_msg" : "Credenciales invalidas",
             "form" : UserLoginForm
         })
+
+
+def user_logout(request) -> HttpResponseRedirect:
+    
+    logout(request)
+    
+    return HttpResponseRedirect(reverse('signin'))
 
 def render_home(request):
     if request.user.is_authenticated:

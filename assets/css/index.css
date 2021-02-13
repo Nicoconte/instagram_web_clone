@@ -137,7 +137,7 @@ body {
 */
 .navbar-container {
     width:100%;
-    height:8%;
+    height:9%;
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid rgb(141, 141, 141, 0.3);
@@ -153,7 +153,7 @@ body {
 }
 
 .navbar-logo h3 {
-    margin-right: 30px;
+    margin-right: 40px;
     margin-top:10px;
     font-weight: 100;
     font-size:25px;
@@ -168,13 +168,41 @@ body {
     align-items: center;
 }
 
-.navbar-buttons a{
+.navbar-buttons a, button{
     background-color: transparent;
     color:black;
-    font-size:23px;
+    font-size:24px;
 }
 
-.navbar-buttons a:nth-child(5) {
+.dropdown-menu {
+    box-shadow: 0px 5px 5px rgb(218, 218, 218);
+    width: 230px;
+}
+
+/*
+* https://stackoverflow.com/questions/2570972/css-font-border
+*/
+.user-options-diamond i {
+    float:right;
+    position: relative;
+    bottom:25px;
+    color:white;
+    font-size:25px;
+    text-shadow: -1px 0 rgba(211, 211, 211, 0.4), 0 1px rgba(211, 211, 211, 0.4), 
+                  1px 0 rgba(211, 211, 211, 0.4), 0 -1px rgba(211, 211, 211, 0.4);
+}
+
+.user-options a{
+    font-size:15px;
+    font-weight: 300;
+}
+
+.user-options i {
+    font-size:24px;
+}
+
+.navbar-buttons button {
+    width:10px;
     margin-right:190px;
 }
 
@@ -193,7 +221,7 @@ body {
     font-weight: lighter;
     border-radius: 3px;
     font-family:'Arial', 'FontAwesome';
-    margin-left:85px;
+    margin-left:75px;
 }
 
 .navbar-search-bar input::-webkit-input-placeholder {
@@ -218,7 +246,7 @@ body {
 
 
 @media (min-width:300px) and (max-width:900px) {
-    .signup-form, .signup-to-signin {
+    .signup-form, .signup-to-signin, .signin-form, .signin-to-signup {
         width:70%;
     }
 }

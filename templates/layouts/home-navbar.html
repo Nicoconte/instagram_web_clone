@@ -18,8 +18,28 @@
         <a href="" class="btn">
             <i class="fa fa-heart-o"></i>
         </a>
-        <a href="" class="btn">
-            <i class="fa fa-circle-thin"></i>
-        </a>
+        <div class="user-options dropdown">
+            <button class="btn dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-circle-thin mt-1"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right mt-2">
+                <div class="user-options-diamond w-100 position-absolute">
+                    <i class="fa fa-caret-up"></i>
+                </div>
+                <a class="dropdown-item">
+                    <i class="fa fa-user-circle-o mr-3"></i> Perfil
+                </a>
+                <a class="dropdown-item">
+                    <i class="fa fa-bookmark-o mr-3 mt-2"></i> Guardados
+                </a>
+                <a class="dropdown-item">
+                    <i class="fa fa-cog mr-3 mt-2"></i> Configuracion
+                </a>
+                <hr>
+                <a class="dropdown-item mt-2" href="{% url 'signout' %}">
+                    Cerrar sesion
+                </a>
+            </div>
+        </div>
     </div>
 </div>
