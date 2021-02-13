@@ -4,14 +4,24 @@ from django.contrib.auth.models import User
 
 from django.contrib.auth import authenticate, login, logout
 
+from django.http import HttpResponseRedirect
+
+from django.urls import reverse
+
 from .forms import UserRegisterForm, UserLoginForm
 
 def render_login(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('home'))
+
     return render(request, "accounts/login.html", {
         "form" : UserLoginForm
     })
 
 def render_register(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('home'))
+
     return render(request, "accounts/register.html", {
         "form" : UserRegisterForm
     })
@@ -79,3 +89,9 @@ def user_login(request):
             "error_msg" : "Credenciales invalidas",
             "form" : UserLoginForm
         })
+
+def render_home(request):
+    if request.user.is_authenticated:
+        return render(request, "accounts/home.html")
+    else:
+        return HttpResponseRedirect(reverse('signin'))
