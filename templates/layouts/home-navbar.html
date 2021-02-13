@@ -1,32 +1,34 @@
+{% load static %}
+
 <div class="navbar-container">
     <div class="navbar-logo">
-        <h3>Instagram</h3>
+        <a href="{% url 'home' %}" class="text-dark"><h3>Instagram</h3></a>
     </div>
     <div class="navbar-search-bar">
         <input type="text" class="form-control bg-light" id="" placeholder="&#xF002; Busca">
     </div>
     <div class="navbar-buttons">
-        <a href="" class="btn">
-            <i class="fa fa-home"></i>
+        <a href="{% url 'home' %}" class="btn">
+            <i class="fa fa-home text-muted"></i>
         </a>
         <a href="" class="btn">
-            <i class="fa fa-paper-plane-o"></i>
+            <i class="fa fa-plus text-muted"></i>
         </a>
         <a href="" class="btn">
-            <i class="fa fa-compass"></i>
+            <i class="fa fa-compass text-muted"></i>
         </a>
         <a href="" class="btn">
-            <i class="fa fa-heart-o"></i>
+            <i class="fa fa-heart-o text-muted"></i>
         </a>
         <div class="user-options dropdown">
-            <button class="btn dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-circle-thin mt-1"></i>
+            <button class="btn d-flex justify-content-center align-items-center ml-2" data-toggle="dropdown">
+                <img src="{% static 'img/ig-default-user.png' %}" alt="">
             </button>
             <div class="dropdown-menu dropdown-menu-right mt-2">
                 <div class="user-options-diamond w-100 position-absolute">
                     <i class="fa fa-caret-up"></i>
                 </div>
-                <a class="dropdown-item">
+                <a class="dropdown-item" href="{% url 'profile' %}">
                     <i class="fa fa-user-circle-o mr-3"></i> Perfil
                 </a>
                 <a class="dropdown-item">

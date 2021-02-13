@@ -137,7 +137,7 @@ body {
 */
 .navbar-container {
     width:100%;
-    height:9%;
+    height:8%;
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid rgb(141, 141, 141, 0.3);
@@ -150,6 +150,10 @@ body {
     justify-content: flex-end;
     align-items: center;
     font-family: 'Lobster', cursive;
+}
+
+.navbar-logo a:hover {
+    text-decoration: none;
 }
 
 .navbar-logo h3 {
@@ -201,9 +205,16 @@ body {
     font-size:24px;
 }
 
+.user-options img {
+    width: 30px;
+    height:30px;
+    border-radius: 50%;
+    margin-top:4px;
+}
+
 .navbar-buttons button {
     width:10px;
-    margin-right:190px;
+    margin-right:230px;
 }
 
 .navbar-search-bar {
@@ -216,12 +227,12 @@ body {
 
 .navbar-search-bar input {
     width: 37%;
-    height:51%;
+    height:52%;
     font-size: 13px;
     font-weight: lighter;
     border-radius: 3px;
     font-family:'Arial', 'FontAwesome';
-    margin-left:75px;
+    margin-left:70px;
 }
 
 .navbar-search-bar input::-webkit-input-placeholder {
@@ -243,6 +254,104 @@ body {
     display: none;
 }
 
+/*
+* User profile page
+*/
+.profile-container {
+    width:100%;
+    height:90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(211, 211, 211, 0.1);   
+}
+
+.profile-information {
+    width: 65%;
+    height: 35%;
+    display: flex;
+    flex-direction: row;
+}
+
+.image-profile {
+    width:25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-image {
+    width:68%;
+    height:73%;
+    border-radius: 50%;
+    border: 1px solid rgba(211, 211, 211, 0.5);
+}
+
+.user-image img{
+    width:100%;
+    height:100%;
+    border-radius: 50%;
+}
+
+.profile-account-info {
+    width:75%;
+    height:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-account-info-container {
+    width:73%;
+    height:80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-options {
+    width:100%;
+    height:30%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.profile-options i {
+    font-size:20px;
+}
+
+.profile-options button:hover {
+    background-color: transparent;
+}
+
+.profile-details {
+    width:100%;
+    height:30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-real-name {
+    width:100%;
+    height:30%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-posts {
+    width:100%;
+    height:auto;
+    overflow: scroll;
+}
+
+.profile-posts::-webkit-scrollbar {
+    display:none;
+}
 
 
 @media (min-width:300px) and (max-width:900px) {

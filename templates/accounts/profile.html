@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block body %}
+
+    {% include "layouts/home-navbar.html" %}
+
+    <div class="profile-container">
+        <div class="profile-information">
+            
+            <div class="image-profile">
+                <div class="user-image">
+                    <img src="{% static 'img/ig-default-user.png' %}" alt="">
+                </div>
+            </div>
+            
+            <div class="profile-account-info">
+                <div class="profile-account-info-container">
+
+                    <div class="profile-options">
+                        <h3 class="font-weight-light">{{ username }}</h3>
+                        
+                        <button class="btn btn-outline-secondary ml-4 btn-sm font-weight-bold text-secondary" style="width:110px; border:1px solid rgb(199, 199, 199);">
+                            Editar perfil
+                        </button>
+
+                        <button class="btn d-flex justify-content-center align-items-center ml-2" style="width:40px;">
+                            <i class="fa fa-cog"></i>
+                        </button>
+                    
+                    </div>
+                
+                    <div class="profile-details">
+                        <p class=""><b>0</b> publicaciones</p>
+                        <p class="ml-4"><b>0</b> seguidores</p>
+                        <p class="ml-4"><b>0</b> seguidos</p>
+                    </div>
+                
+                    <div class="profile-real-name">
+                        <p class="font-weight-bold text-muted">{{ real_name }}</p>
+                    </div>
+                
+                </div>
+            
+            </div>
+        
+        </div>
+        <div class="profile-posts">
+
+        </div>
+    </div>
+
+{% endblock body %}
