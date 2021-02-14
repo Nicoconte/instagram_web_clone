@@ -274,7 +274,7 @@ body {
 }
 
 .image-profile {
-    width:25%;
+    width:24%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -335,9 +335,9 @@ body {
     align-items: center;
 }
 
-.profile-real-name {
+.profile-bio {
     width:100%;
-    height:30%;
+    height:auto;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -345,14 +345,75 @@ body {
 
 .profile-posts {
     width:100%;
-    height:auto;
-    overflow: scroll;
+    height:70%;
 }
 
-.profile-posts::-webkit-scrollbar {
-    display:none;
+
+/*
+* Post form page
+*/
+.create-post-container {
+    width:100%;
+    height:90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(211, 211, 211, 0.1);
 }
 
+.post-form {
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column; 
+}
+
+.post-form h6 {
+    left: 274px;
+}
+
+.post-form form {
+    width:100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.post-form input, .post-form textarea, .post-form button {
+    width: 60%;
+}
+
+.post-preview {
+    width:25%;
+    height:270px;
+    position:relative;
+    float:left;
+    left:60px;
+    margin-left:30px;
+    margin-top:30px;
+    border-radius:0px;
+}
+
+.post-preview img {
+    width:100%;
+    height:100%;
+}
+
+.post-preview-information {
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.4);
+    z-index:1000;
+    display: none;
+}
 
 @media (min-width:300px) and (max-width:900px) {
     .signup-form, .signup-to-signin, .signin-form, .signin-to-signup {

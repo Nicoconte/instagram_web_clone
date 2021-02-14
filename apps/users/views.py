@@ -1,14 +1,18 @@
 from django.shortcuts import render
 
 from django.contrib.auth.models import User
-
 from django.contrib.auth import authenticate, login, logout
 
 from django.http import HttpResponseRedirect
 
 from django.urls import reverse
 
+from django.conf import settings
+
 from .forms import UserRegisterForm, UserLoginForm
+
+
+import os
 
 def render_login(request):
     if request.user.is_authenticated:
@@ -41,6 +45,13 @@ def user_register(request):
             )
 
             if user:
+
+                #Creamos las carpetas en donde se almacena las imagenes del usuario
+                #Con esto obtenemos una mejor gestion del contenido
+                os.mkdir(f"{settings.MEDIA_ROOT}{user.username}" )
+                os.mkdir(f"{settings.MEDIA_ROOT}{user.username}/profile" )
+                os.mkdir(f"{settings.MEDIA_ROOT}{user.username}/posts" )
+
                 return render(request, "accounts/register.html",{
                     "form" : UserRegisterForm
                 })

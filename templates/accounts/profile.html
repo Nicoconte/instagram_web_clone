@@ -31,12 +31,12 @@
                     </div>
                 
                     <div class="profile-details">
-                        <p class=""><b>0</b> publicaciones</p>
+                        <p class=""><b>{{ post_amount }}</b> publicaciones</p>
                         <p class="ml-4"><b>0</b> seguidores</p>
                         <p class="ml-4"><b>0</b> seguidos</p>
                     </div>
                 
-                    <div class="profile-real-name">
+                    <div class="profile-bio">
                         <p class="font-weight-bold text-muted">{{ real_name }}</p>
                     </div>
                 
@@ -45,8 +45,15 @@
             </div>
         
         </div>
-        <div class="profile-posts">
-
+        <div class="profile-posts container">
+            {% for post in posts %}
+                <div class="post-preview card">
+                    <img src="{{post.1}}" alt="">
+                    <div class="post-preview-information">
+                        <p>{{ post.0 }}</p>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 

@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block body %}
+
+    {% include "layouts/home-navbar.html" %}
+
+    <div class="create-post-container">
+        <div class="post-form">
+            <span class="w-100 ">
+                <h6 class="position-absolute mt-5">Nueva publicacion</h6>
+            
+                {% if msg %}
+                        <p class="text-muted ml-4">{{ msg }}</p>
+                {% endif %}
+
+            </span> 
+            <form action="{% url 'add-post' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn btn-primary mt-4">Crear publicacion</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock body %}
