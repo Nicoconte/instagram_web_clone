@@ -47,10 +47,13 @@
         </div>
         <div class="profile-posts container">
             {% for post in posts %}
-                <div class="post-preview card">
+                <div class="post-preview card" post-id={{post.3}}>
                     <img src="{{post.1}}" alt="">
                     <div class="post-preview-information">
-                        <p>{{ post.0 }}</p>
+                        <p>
+                            <i class="fa fa-heart mr-1"></i> {{ post.0 }}
+                            <i class="fa fa-comment ml-3 mb-2"></i>   {{ post.2 }}
+                        </p>
                     </div>
                 </div>
             {% endfor %}
