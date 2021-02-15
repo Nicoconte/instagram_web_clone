@@ -9,7 +9,7 @@
         <div class="profile-information">
             
             <div class="image-profile">
-                <div class="user-image" style="background-image: url('{{user_profile}}');"></div>
+                <div class="user-image" style="background-image: url('{{ request.session.user_image  }}');"></div>
             </div>
             
             <div class="profile-account-info">
@@ -46,7 +46,7 @@
         <div class="profile-posts container">
             {% for post in posts %}
                 <div class="post-preview card" post-id={{post.3}} data-toggle="modal" data-target="#postModal">
-                    <img src="{{post.1}}" alt="">
+                    <div class="post-preview-image w-100 h-100" style="background-image: url('{{post.1}}');"></div>
                     <div class="post-preview-information">
                         <p>
                             <i class="fa fa-heart mr-1"></i> {{ post.0 }}

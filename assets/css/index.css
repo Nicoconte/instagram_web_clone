@@ -205,16 +205,18 @@ body {
     font-size:24px;
 }
 
-.user-options img {
-    width: 30px;
-    height:30px;
-    border-radius: 50%;
-    margin-top:4px;
-}
 
 .navbar-buttons button {
-    width:10px;
+    width:30px;
+    height:30px;
     margin-right:230px;
+    display: inline-block;
+    border-radius: 50%;
+  
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    margin-top:5px;
 }
 
 .navbar-search-bar {
@@ -398,9 +400,14 @@ body {
     border-radius:0px;
 }
 
-.post-preview img {
-    width:100%;
-    height:100%;
+
+.post-preview-image {
+    display: inline-block;
+      
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    margin-top:5px;
 }
 
 .post-preview-information {
@@ -441,12 +448,14 @@ body {
 .post-modal-image {
     width:65%;
     height:100%;
+    display: inline-block;
+      
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;   
+    background-color: black; 
 }
 
-.post-modal-image img {
-    width:100%;
-    height:100%;
-}
 
 .post-modal-information {
     width:35%;
@@ -478,10 +487,16 @@ body {
     text-decoration: none;
 }
 
-.post-modal-user-info img {
+.post-modal-user-image {
     width:35px;
     height:35px;
     border-radius: 50%;
+    display: inline-block;
+      
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; 
+    margin-left:20px;
 }
 
 .post-modal-options {

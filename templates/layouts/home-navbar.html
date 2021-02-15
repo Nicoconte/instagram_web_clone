@@ -21,9 +21,8 @@
             <i class="fa fa-heart-o text-muted"></i>
         </a>
         <div class="user-options dropdown">
-            <button class="btn d-flex justify-content-center align-items-center ml-2" data-toggle="dropdown">
-                <img src="{% static 'img/ig-default-user.png' %}" alt="">
-            </button>
+            <button class="btn d-flex justify-content-center align-items-center ml-2" data-toggle="dropdown"
+            style="background-image:url(' {{ request.session.user_image }} ')"></button>
             <div class="dropdown-menu dropdown-menu-right mt-2">
                 <div class="user-options-diamond w-100 position-absolute">
                     <i class="fa fa-caret-up"></i>

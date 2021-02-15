@@ -21,6 +21,7 @@ const restartModalStyles = () => {
     })
 }
 
+
 const showPostOnModal = () => {
     
     $(document).on("click", ".post-preview", function() {
@@ -35,9 +36,9 @@ const showPostOnModal = () => {
                 post_id : id
             },
             success : function(response) {
-                $(".post-modal-image img").attr("src", response.image)
+                console.log(response.image)
+                $(".post-modal-image").css('background-image', 'url("' + response.image + '")');
                 $(".post-modal-user p").text(response.username)
-                $(".")
             }
         })
     })

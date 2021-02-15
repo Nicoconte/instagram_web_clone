@@ -20,11 +20,8 @@ def render_user_profile(request):
         
         user = request.user
         
-        userProfile = UserProfileImage.objects.get(user=user)
-
         return render(request, "accounts/profile.html", {
             "username" : request.user.username,
-            "user_profile" : userProfile.file.url,
             "real_name" : request.user.first_name,
             "post_amount" : post_amount(user),
             "posts" : list_preview_user_posts(user)

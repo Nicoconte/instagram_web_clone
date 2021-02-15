@@ -9,13 +9,11 @@
                 </button>
 
                 <div class="post-modal-container">
-                    <div class="post-modal-image">
-                        <img src="" alt="">
-                    </div>
+                    <div class="post-modal-image"></div>
                     <div class="post-modal-information">
                         <div class="post-modal-user">
                             <div class="post-modal-user-info">
-                                <img src="{{ user_profile }}" class="ml-4" alt="">
+                                <div class="post-modal-user-image" style="background-image: url('{{ request.session.user_image }}');"></div>
                                 <a href="" class="ml-3 mt-3"><p class="font-weight-bold text-muted"></p></a>
                             </div>
                             <div class="post-modal-options">

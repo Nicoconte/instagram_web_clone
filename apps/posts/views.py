@@ -102,8 +102,7 @@ def get_post_for_modal(request):
             
             id = request.GET['post_id']
             user = request.user
-            userProfile = UserProfileImage.objects.get(user=user)
-
+            
             post = Post.objects.get(id=id, user=user)
             post_likes = PostLike.objects.get(post=post)
             post_images = PostImage.objects.filter(post=post)
@@ -111,7 +110,6 @@ def get_post_for_modal(request):
             response = {
                 "id" : post.id,
                 "username" : user.username,
-                "user_profile" : userProfile.file.url,
                 "publish_date" : post.date.strftime("%y-%m-%d"),
                 "description" : post.description,
                 "likes" : post_likes.likes,

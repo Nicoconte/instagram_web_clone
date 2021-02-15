@@ -11,6 +11,8 @@ from django.conf import settings
 
 from .forms import UserRegisterForm, UserLoginForm
 
+from .models import UserProfileImage
+
 
 import os
 
@@ -46,15 +48,15 @@ def user_register(request):
 
             if user:
 
+                UserProfileImage.objects.create(user=user)
+
                 #Creamos las carpetas en donde se almacena las imagenes del usuario
                 #Con esto obtenemos una mejor gestion del contenido
                 os.mkdir(f"{settings.MEDIA_ROOT}{user.username}" )
                 os.mkdir(f"{settings.MEDIA_ROOT}{user.username}/profile" )
                 os.mkdir(f"{settings.MEDIA_ROOT}{user.username}/posts" )
 
-                return render(request, "accounts/register.html",{
-                    "form" : UserRegisterForm
-                })
+                return HttpResponseRedirect(reverse('home'))
             
             else:
                 return render(request, "accounts/register.html", {
@@ -81,6 +83,11 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
 
             if user:
+                
+                profile = UserProfileImage.objects.get(user=user)
+
+                #https://docs.djangoproject.com/en/3.1/topics/http/sessions/
+                request.session['user_image'] = profile.file.url
 
                 login(request, user)
  
@@ -101,6 +108,8 @@ def user_login(request):
 
 def user_logout(request) -> HttpResponseRedirect:
     
+    request.session['user_image'] = None
+
     logout(request)
     
     return HttpResponseRedirect(reverse('signin'))

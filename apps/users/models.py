@@ -7,4 +7,4 @@ def path(instance, filename) -> str:
 
 class UserProfileImage(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    file = models.ImageField(upload_to=path, default='not-image.png')
+    file = models.ImageField(upload_to=path, default='ig-default-user.png')
