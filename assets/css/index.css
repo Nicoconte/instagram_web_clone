@@ -282,16 +282,15 @@ body {
 }
 
 .user-image {
-    width:73%;
-    height:73%;
+    width:75%;
+    height:75%;
+    display: inline-block;
     border-radius: 50%;
-    border: 1px solid rgba(211, 211, 211, 0.5);
-}
+  
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 
-.user-image img{
-    width:100%;
-    height:100%;
-    border-radius: 50%;
 }
 
 .profile-account-info {
@@ -422,6 +421,89 @@ body {
     color:white;
     background-color: rgba(0,0,0,0.2);
     cursor:pointer;
+}
+
+/*
+* Post modal layout
+*/
+
+.modal-dialog {
+    margin:0px;
+}
+
+.post-modal-container {
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.post-modal-image {
+    width:65%;
+    height:100%;
+}
+
+.post-modal-image img {
+    width:100%;
+    height:100%;
+}
+
+.post-modal-information {
+    width:35%;
+    height:100%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+}
+
+.post-modal-user {
+    width:100%;
+    height:11%;
+    border-bottom:1px solid rgb(212, 212, 212, 0.3);
+    display: flex;
+    flex-direction: row;
+}
+
+.post-modal-user-info {
+    width:50%;
+    height:100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.post-modal-user-info a:hover {
+    text-decoration: none;
+}
+
+.post-modal-user-info img {
+    width:35px;
+    height:35px;
+    border-radius: 50%;
+}
+
+.post-modal-options {
+    width:50%;
+    height:100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.post-modal-options button {
+    background-color: transparent;
+}
+
+.post-modal-comments {
+    width:100%;
+    height:54%;
+}
+
+.post-modal-actions {
+    width:100%;
+    height:40%;
 }
 
 @media (min-width:300px) and (max-width:900px) {

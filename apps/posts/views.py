@@ -1,4 +1,4 @@
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponse, HttpResponseRedirect
 
 from django.shortcuts import render
 
@@ -10,7 +10,11 @@ from .forms import PostForm
 
 from .models import Post, PostComment, PostCommentAnswer, PostImage, PostLike
 
+from apps.users.models import UserProfileImage
+
 from datetime import date
+
+import json
 
 """
 Primero se suben las imagenes
@@ -91,16 +95,32 @@ def list_preview_user_posts(user) -> list:
     return response
 
 
-#Obtener un registro por ID y ajax
-def get_post(request, id):
+#Obtener un registro por ID y ajax para mostrarlo en un modal
+def get_post_for_modal(request):
     try:
-        if request.user.is_authenticated:
-            post = Post.objects.get(id=id, user=request.user)
+        if request.method == "GET":
+            
+            id = request.GET['post_id']
+            user = request.user
+            userProfile = UserProfileImage.objects.get(user=user)
+
+            post = Post.objects.get(id=id, user=user)
+            post_likes = PostLike.objects.get(post=post)
+            post_images = PostImage.objects.filter(post=post)
+
+            response = {
+                "id" : post.id,
+                "username" : user.username,
+                "user_profile" : userProfile.file.url,
+                "publish_date" : post.date.strftime("%y-%m-%d"),
+                "description" : post.description,
+                "likes" : post_likes.likes,
+                "image" : post_images[0].file.url
+            }
+
 
             if post:
-                return {
-                    "description" : post.description
-                }
+                return HttpResponse(json.dumps(response))
 
             else:
                 raise Exception
@@ -109,6 +129,6 @@ def get_post(request, id):
             raise Exception
 
     except Exception as e:
-        return {
+        return HttpResponse({
             "error" : str(e)
-        }
+        })

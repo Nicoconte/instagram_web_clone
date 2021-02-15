@@ -43,3 +43,10 @@ class UserLoginForm(forms.Form):
             "placeholder" : "Contraseña"
         }
     ))
+
+class UserProfileForm(forms.Form):
+    file = forms.FileField(label="", widget=forms.ClearableFileInput(
+        attrs={
+            "class" : "form-control mt-3"
+        }
+    ))

@@ -1,0 +1,38 @@
+{% load static %}
+
+<div class="modal" id="postModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="width:850px; height:600px; background-color:white;">
+                <button type="button" class="btn" data-dismiss="modal" style="position:absolute; left:900px; top:-35px; width:30px; height:30px; font-size:25px;">
+                    <i class="fa fa-times text-white"></i>
+                </button>
+
+                <div class="post-modal-container">
+                    <div class="post-modal-image">
+                        <img src="" alt="">
+                    </div>
+                    <div class="post-modal-information">
+                        <div class="post-modal-user">
+                            <div class="post-modal-user-info">
+                                <img src="{{ user_profile }}" class="ml-4" alt="">
+                                <a href="" class="ml-3 mt-3"><p class="font-weight-bold text-muted"></p></a>
+                            </div>
+                            <div class="post-modal-options">
+                                <button class="btn">
+                                    <i class="fa fa-ellipsis-h ml-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="post-modal-comments">
+    
+                        </div>
+                        <div class="post-modal-actions">
+    
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

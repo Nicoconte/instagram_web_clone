@@ -10,21 +10,34 @@ const pagePreload = () => {
     }, 1000)
 }
 
+const restartModalStyles = () => {
+    $(".modal-dialog").css({
+        "margin" : "30px 40px 10px 250px",
+    })
 
-const test = () => {
+    $(".modal-body").css({
+        "margin" : "0px",
+        "padding" : "0px",
+    })
+}
+
+const showPostOnModal = () => {
     
-    console.log("Se llamaa")
-
     $(document).on("click", ".post-preview", function() {
+
         let id  = $(this).attr("post-id")
-        let url = `post/${id}` 
 
         $.ajax({
             type : "GET",
             dataType : "JSON",
-            url : url,
+            url : "/post/modal/",
+            data : {
+                post_id : id
+            },
             success : function(response) {
-                console.log(response)
+                $(".post-modal-image img").attr("src", response.image)
+                $(".post-modal-user p").text(response.username)
+                $(".")
             }
         })
     })
@@ -32,7 +45,8 @@ const test = () => {
 
 $(document).ready(() => {   
     
-    test();
+    showPostOnModal();
+    restartModalStyles();
 
     pagePreload();
 })
