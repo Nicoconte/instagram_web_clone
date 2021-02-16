@@ -407,7 +407,6 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    margin-top:5px;
 }
 
 .post-preview-information {
@@ -511,14 +510,143 @@ body {
     background-color: transparent;
 }
 
-.post-modal-comments {
-    width:100%;
-    height:54%;
-}
-
 .post-modal-actions {
     width:100%;
-    height:40%;
+    height:29%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.post-modal-comments {
+    width:100%;
+    height:65%;
+    overflow: scroll;
+    border-bottom: 1px solid rgb(212, 212, 212, 0.3);
+}
+
+
+.post-modal-comments::-webkit-scrollbar {
+    display: none;
+}
+
+.post-modal-user-description {
+    width:100%;
+    height:auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.post-modal-comment-image {
+    width:20%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-modal-people-comment {
+    width:100%;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-modal-comment-text, #post-modal-user-text {
+    width:70%;
+    height:auto;
+    display: block;
+    overflow-wrap: break-word;
+}
+
+
+.post-modal-people-comment-content {
+    width:100%;
+    height:auto;
+    display: flex;
+    flex-direction: row;   
+}
+
+
+.post-modal-actions-buttons {
+    width:100%;
+    height:30%;
+    display: flex;
+    flex-direction: row;
+}
+
+.post-modal-actions-buttons button {
+    width:50px;
+    height:50px;
+    background-color:transparent;
+    font-size:25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.post-modal-actions-buttons-common {
+    width:70%;
+    height:100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.post-modal-actions-save-button {
+    width:30%;
+    height:100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.post-modal-actions-likes {
+    width:100%;
+    height: 38%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    overflow-wrap: break-word;
+    border-bottom: 1px solid rgb(212, 212, 212, 0.3);
+}
+
+.post-modal-actions-likes p:nth-child(1) {
+    font-size:14px;
+    margin-top:3px;
+    margin-left:18px;
+}
+
+.post-modal-actions-likes p:nth-child(2) {
+    margin-left:18px;
+    margin-bottom: 10px;
+    font-size:11px;
+}
+
+.post-modal-actions-comment {
+    width: 100%;
+    height: 32%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.post-modal-actions-comment button:nth-child(1) {
+    font-size:20px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-modal-actions-comment textarea {
+    width:auto;
+    height: 50px;
+    border: 0px;
+    font-size:12px;
 }
 
 @media (min-width:300px) and (max-width:900px) {

@@ -10,9 +10,11 @@ from .forms import PostForm
 
 from .models import Post, PostComment, PostCommentAnswer, PostImage, PostLike
 
-from apps.users.models import UserProfileImage
-
 from datetime import date
+
+from .serializers import postCommentSerializer
+
+from django.views.decorators.csrf import csrf_exempt
 
 import json
 
@@ -78,7 +80,7 @@ def list_preview_user_posts(user) -> list:
     user_posts = Post.objects.filter(user=user)
 
     for post in user_posts:
-        post_likes = PostLike.objects.get(post=post)
+        post_likes = PostLike.objects.filter(post=post).count()
         post_images = PostImage.objects.filter(post=post)
 
         post_comments = PostComment.objects.filter(post=post).count()
@@ -87,13 +89,16 @@ def list_preview_user_posts(user) -> list:
         
 
         posts.append([
-            post_likes.likes, post_images[0].file.url, post_comment_len, post.id
+            post_likes, post_images[0].file.url, post_comment_len, post.id
         ])
 
         response = posts
     
     return response
 
+
+def postLikedBefore(post, user):
+    return PostLike.objects.filter(post=post, user=user).exists()
 
 #Obtener un registro por ID y ajax para mostrarlo en un modal
 def get_post_for_modal(request):
@@ -102,22 +107,33 @@ def get_post_for_modal(request):
             
             id = request.GET['post_id']
             user = request.user
-            
+
             post = Post.objects.get(id=id, user=user)
-            post_likes = PostLike.objects.get(post=post)
-            post_images = PostImage.objects.filter(post=post)
-
-            response = {
-                "id" : post.id,
-                "username" : user.username,
-                "publish_date" : post.date.strftime("%y-%m-%d"),
-                "description" : post.description,
-                "likes" : post_likes.likes,
-                "image" : post_images[0].file.url
-            }
-
 
             if post:
+
+                post_likes = PostLike.objects.filter(post=post).count()
+                post_images = PostImage.objects.filter(post=post)
+
+                post_comments = PostComment.objects.filter(post=post)
+
+                comments = []
+
+                for post_comment in post_comments:
+                    comments.append(postCommentSerializer(post_comment))
+                
+                
+                response = {
+                    "id" : post.id,
+                    "username" : user.username,
+                    "publish_date" : post.date.strftime("%y-%m-%d"),
+                    "description" : post.description,
+                    "likes" : post_likes,
+                    "was_liked" : postLikedBefore(post, user),
+                    "image" : post_images[0].file.url,
+                    "comments" : comments
+                }
+
                 return HttpResponse(json.dumps(response))
 
             else:
@@ -130,3 +146,67 @@ def get_post_for_modal(request):
         return HttpResponse({
             "error" : str(e)
         })
+
+
+@csrf_exempt
+def toggleLike(request):
+    try:
+        
+        if request.user.is_authenticated:
+            id = request.POST['post_id']
+
+            post = Post.objects.get(id=id)
+
+            user = request.user
+
+            #If the post was liked before -> English xd
+            if postLikedBefore(post, user):
+                PostLike.objects.get(post=post, user=user).delete()
+            
+            else:
+                PostLike.objects.create(post=post, user=user)
+        
+            return HttpResponse(json.dumps({
+                "liked" : True
+            }))
+        
+        else:
+            raise Exception
+
+    except Exception as e:
+        return HttpResponse(json.dumps({
+            "liked" : False,
+            "error" : str(e)
+        }))
+
+
+@csrf_exempt
+def comment_a_post(request):
+    try:
+        if request.user.is_authenticated:
+            id = request.POST['post_id']
+
+            print(id)
+
+            comment = request.POST['comment']
+            user = request.user
+            post = Post.objects.get(id=id)
+
+            post_comment = PostComment.objects.create(post=post, comment=comment, user=user)
+
+            if post_comment:
+                return HttpResponse(json.dumps({
+                    "commented" : True
+                }))
+
+            else:
+                raise Exception
+        
+        else:
+            raise Exception
+
+    except Exception as e:
+        HttpResponse(json.dumps({
+            "commented" : False,
+            "error" : str(e)
+        }))

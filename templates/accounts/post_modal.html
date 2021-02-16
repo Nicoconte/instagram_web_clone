@@ -4,12 +4,18 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body" style="width:850px; height:600px; background-color:white;">
+                
+                <!-- Boton de cierre -->
                 <button type="button" class="btn" data-dismiss="modal" style="position:absolute; left:900px; top:-35px; width:30px; height:30px; font-size:25px;">
                     <i class="fa fa-times text-white"></i>
                 </button>
 
                 <div class="post-modal-container">
+                    
+                    <!-- Imagen de la izquierda -->
                     <div class="post-modal-image"></div>
+                    
+                    <!-- Informacion del usuario en la cabecera -->
                     <div class="post-modal-information">
                         <div class="post-modal-user">
                             <div class="post-modal-user-info">
@@ -22,12 +28,57 @@
                                 </button>
                             </div>
                         </div>
+                        
+                        <!-- Comentarios -->
                         <div class="post-modal-comments">
-    
+                            
+                            <!-- Comentario del usuario creador -->
+                            <div class="post-modal-user-description mt-3">
+                                <div class="post-modal-comment-image mt-2">
+                                    <div class="post-modal-user-image" style="background-image: url('{{ request.session.user_image }}');"></div>                                    
+                                </div>
+                                <div id="post-modal-user-text"></div>
+                            </div>
+
+                            <!-- Comentarios de la gente -->
+                            <div class="post-modal-people-comment"></div>
+
                         </div>
-                        <div class="post-modal-actions">
-    
-                        </div>                        
+                        
+                        <div class="post-modal-actions" post-id="">
+                            
+                            <div class="post-modal-actions-buttons">
+                                <div class="post-modal-actions-buttons-common">
+                                    <button class="like-post-btn btn ml-2">
+                                        <i class="fa fa-heart-o mt-1"></i>
+                                    </button>
+                                    <button class="btn" id="focus-on-comment-btn">
+                                        <i class="fa fa-comment-o"></i>
+                                    </button>
+                                    <button class="btn">
+                                        <i class="fa fa-paper-plane-o"></i>
+                                    </button>                                                                        
+                                </div>
+
+                                <div class="post-modal-actions-save-button">
+                                    <button class="btn mr-2">
+                                        <i class="fa fa-bookmark-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="post-modal-actions-likes"></div>
+                            
+                            <div class="post-modal-actions-comment">
+                                <button class="btn">
+                                    <i class="fa fa-smile-o"></i>
+                                </button>
+                                <textarea type="text" class="form-control" placeholder="Añade un comentario..." id="post-comment-input"></textarea>
+                                <button class="comment-post-btn btn btn-sm text-primary" style="width:70px;">Publicar</button>
+                            </div>
+                        
+                        </div>   
+
                     </div>
                 </div>
             </div>

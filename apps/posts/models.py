@@ -9,7 +9,7 @@ def path(instance, filename) -> str:
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    description = models.TextField(max_length=3000)
+    description = models.TextField(max_length=500)
     date = models.DateField()
 
 class PostImage(models.Model):
@@ -18,10 +18,11 @@ class PostImage(models.Model):
 
 class PostLike(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    likes = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
 class PostComment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     comment = models.CharField(max_length=200)
 
 class PostCommentAnswer(models.Model):
