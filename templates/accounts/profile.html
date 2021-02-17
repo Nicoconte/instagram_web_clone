@@ -9,7 +9,7 @@
         <div class="profile-information">
             
             <div class="image-profile">
-                <div class="user-image" style="background-image: url('{{ request.session.user_image  }}');"></div>
+                <div class="user-image" style="background-image: url('{{ user_profile_image  }}');"></div>
             </div>
             
             <div class="profile-account-info">
@@ -18,20 +18,31 @@
                     <div class="profile-options mt-2">
                         <h3 class="font-weight-light">{{ username }}</h3>
                         
-                        <button class="btn btn-outline-secondary ml-4 btn-sm font-weight-bold text-secondary" style="width:110px; border:1px solid rgb(199, 199, 199);">
-                            Editar perfil
-                        </button>
+                        {% if is_owner %}
+                            <button class="btn btn-outline-secondary ml-4 btn-sm font-weight-bold text-secondary" style="width:110px; border:1px solid rgb(199, 199, 199);">
+                                Editar perfil
+                            </button>
+                            
+                            <button class="btn d-flex justify-content-center align-items-center ml-2" style="width:40px;">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                        
+                        {% else %}
+                            
+                            {% if is_already_follow %}
+                                <a href="{% url 'unfollow-account' user_id %}" class="btn btn-primary ml-4 btn-sm font-weight-bold text-white"> Dejar seguir </a>
+                            {% else %}
+                                <a href="{% url 'follow-account' user_id %}" class="btn btn-primary ml-4 btn-sm font-weight-bold text-white"> seguir </a>
+                            {% endif %}
 
-                        <button class="btn d-flex justify-content-center align-items-center ml-2" style="width:40px;">
-                            <i class="fa fa-cog"></i>
-                        </button>
+                        {% endif %}
                     
                     </div>
                 
                     <div class="profile-details">
                         <p class=""><b>{{ post_amount }}</b> publicaciones</p>
-                        <p class="ml-4"><b>0</b> seguidores</p>
-                        <p class="ml-4"><b>0</b> seguidos</p>
+                        <p class="ml-4"><b>{{ followers }}</b> seguidores</p>
+                        <p class="ml-4"><b>{{ following }}</b> seguidos</p>
                     </div>
                 
                     <div class="profile-bio">
@@ -45,12 +56,12 @@
         </div>
         <div class="profile-posts container">
             {% for post in posts %}
-                <div class="post-preview card" post-id={{post.3}} data-toggle="modal" data-target="#postModal">
-                    <div class="post-preview-image w-100 h-100" style="background-image: url('{{post.1}}');"></div>
+                <div class="post-preview card" post-id={{post.post_id}} user-id="{{post.user_id}}" data-toggle="modal" data-target="#postModal">
+                    <div class="post-preview-image w-100 h-100" style="background-image: url('{{post.image}}');"></div>
                     <div class="post-preview-information">
                         <p>
-                            <i class="fa fa-heart mr-1"></i> {{ post.0 }}
-                            <i class="fa fa-comment ml-3 mb-2"></i>   {{ post.2 }}
+                            <i class="fa fa-heart mr-1"></i> {{ post.likes }}
+                            <i class="fa fa-comment ml-3 mb-2"></i>   {{ post.comments }}
                         </p>
                     </div>
                 </div>

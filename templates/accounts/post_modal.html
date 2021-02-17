@@ -19,7 +19,7 @@
                     <div class="post-modal-information">
                         <div class="post-modal-user">
                             <div class="post-modal-user-info">
-                                <div class="post-modal-user-image" style="background-image: url('{{ request.session.user_image }}');"></div>
+                                <div class="post-modal-user-image" style="background-image: url('');"></div>
                                 <a href="" class="ml-3 mt-3"><p class="font-weight-bold text-muted"></p></a>
                             </div>
                             <div class="post-modal-options">
@@ -35,7 +35,7 @@
                             <!-- Comentario del usuario creador -->
                             <div class="post-modal-user-description mt-3">
                                 <div class="post-modal-comment-image mt-2">
-                                    <div class="post-modal-user-image" style="background-image: url('{{ request.session.user_image }}');"></div>                                    
+                                    <div class="post-modal-user-image" style="background-image: url('');"></div>                                    
                                 </div>
                                 <div id="post-modal-user-text"></div>
                             </div>
@@ -45,7 +45,7 @@
 
                         </div>
                         
-                        <div class="post-modal-actions" post-id="">
+                        <div class="post-modal-actions" post-id="" user-id="">
                             
                             <div class="post-modal-actions-buttons">
                                 <div class="post-modal-actions-buttons-common">
@@ -61,7 +61,7 @@
                                 </div>
 
                                 <div class="post-modal-actions-save-button">
-                                    <button class="btn mr-2">
+                                    <button class="save-post-btn btn mr-2">
                                         <i class="fa fa-bookmark-o"></i>
                                     </button>
                                 </div>
@@ -74,7 +74,7 @@
                                     <i class="fa fa-smile-o"></i>
                                 </button>
                                 <textarea type="text" class="form-control" placeholder="Añade un comentario..." id="post-comment-input"></textarea>
-                                <button class="comment-post-btn btn btn-sm text-primary" style="width:70px;">Publicar</button>
+                                <button class="comment-post-btn btn btn-sm text-primary ml-3" style="width:70px;">Publicar</button>
                             </div>
                         
                         </div>   

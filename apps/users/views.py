@@ -1,3 +1,4 @@
+from apps.accounts.views import get_suggested_accounts
 from django.shortcuts import render
 
 from django.contrib.auth.models import User
@@ -13,6 +14,7 @@ from .forms import UserRegisterForm, UserLoginForm
 
 from .models import UserProfileImage
 
+from apps.accounts.models import Account
 
 import os
 
@@ -48,6 +50,10 @@ def user_register(request):
 
             if user:
 
+                #Con esta cuenta vamos a identificar a todos los usuarios de la plataforma
+                #Tambien sirve como auxiliar para el tema de los followers y following
+                Account.objects.create(user=user)
+
                 UserProfileImage.objects.create(user=user)
 
                 #Creamos las carpetas en donde se almacena las imagenes del usuario
@@ -56,7 +62,7 @@ def user_register(request):
                 os.mkdir(f"{settings.MEDIA_ROOT}{user.username}/profile" )
                 os.mkdir(f"{settings.MEDIA_ROOT}{user.username}/posts" )
 
-                return HttpResponseRedirect(reverse('home'))
+                return HttpResponseRedirect(reverse('signup'))
             
             else:
                 return render(request, "accounts/register.html", {
@@ -114,8 +120,16 @@ def user_logout(request) -> HttpResponseRedirect:
     
     return HttpResponseRedirect(reverse('signin'))
 
+
 def render_home(request):
     if request.user.is_authenticated:
-        return render(request, "accounts/home.html")
+
+        user = request.user
+
+        return render(request, "accounts/home.html", {
+            "username" : user.username,
+            "real_name" : user.first_name,
+            "suggested_accounts" : get_suggested_accounts(user)
+        })
     else:
         return HttpResponseRedirect(reverse('signin'))

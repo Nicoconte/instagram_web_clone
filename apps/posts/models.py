@@ -11,6 +11,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(max_length=500)
     date = models.DateField()
+    time = models.TimeField(blank=True, null=True)
 
 class PostImage(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -28,3 +29,7 @@ class PostComment(models.Model):
 class PostCommentAnswer(models.Model):
     comment = models.ForeignKey(PostComment, on_delete=models.CASCADE)
     answer = models.CharField(max_length=200)
+
+class SavedPost(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -6,9 +6,64 @@
     {% include "layouts/home-navbar.html" %}
 
     <div class="home-container">
-        <div class="post-container">
+        
+        <!-- Publicaciones de los usuarios que sigo -->
+        <div class="home-content-post-container">
 
         </div>
+        
+        <!-- Nombre de usuario y 5 cuentas sugeridas -->
+        <div class="home-account-information-container">
+            <div class="home-user-account">
+                <div class="home-user-account-image">
+                    <div class="home-user-image mt-4" style="background-image: url('{{ request.session.user_image }}');"></div>
+                </div>
+                <div class="home-account-names">
+                    <p class="text-muted font-weight-bold ml-4 mt-5">
+                        {{ username }} <br> 
+                        <span class="text-muted font-weight-light">{{ real_name }}</span> 
+                    </p>
+                </div>
+            </div>
+            <div class="home-suggested-accounts">
+                <div class="home-suggested-accounts-header">
+                    <p class="font-weight-bold ml-2 small">
+                        Segurencias para ti
+                    </p>
+                    <a href="#" class="text-muted small" style="margin-bottom:18px; margin-left:133px;">Ver todo</a>
+                </div>
+                <div class="home-suggested-accounts-body">
+                    {% for account in suggested_accounts %}
+                        <div class="home-suggested-accounts-info" user-id="{{ account.user_id }}">
+                            <div class="home-suggested-accounts-user-image" style="background-image: url('{{ account.image }}');"></div>
+                            <div class="home-suggested-accounts-user-name">
+                                <p class="ml-4 small font-weight-bold ">
+                                    <a href="{% url 'see-another-profile' account.user_id %}" class="text-dark">{{ account.username }}</a>
+                                </p>
+                                {% if account.is_already_follow %}
+                                    <div class="w-75 h-100 d-flex justify-content-end align-items-center">
+                                        <a href="{% url 'unfollow-account' account.user_id %}" class="mb-3 font-weight-bold small">Dejar de seguir</a>
+                                    </div>
+                                {% else %}
+                                    <div class="w-75 h-100 d-flex justify-content-end align-items-center">
+                                        <a href="{% url 'follow-account' account.user_id %}" class="mb-3 font-weight-bold small">Seguir</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="home-suggested-accounts-footer w-100 h-50 text-muted" style="font-size:10px;">
+                    <p class="mt-4">
+                        Información . Ayuda . Prensa . API . Empleo . Privacidad . Condiciones . Ubicaciones 
+                        . Cuentas . destacadas . Hashtags . Idioma
+                        Español (España)                      
+                    </p>
+                    <span class="mt-4">© 2021 INSTAGRAM Clone FROM Nicolas Conte  </span>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 {% endblock body %}

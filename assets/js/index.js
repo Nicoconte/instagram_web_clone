@@ -22,7 +22,7 @@ const pagePreload = () => {
     
     setTimeout(() => {
         $("#main-container").fadeIn("fast")    
-    }, 1000)
+    }, 500)
 }
 
 const restartModalStyles = () => {
@@ -38,18 +38,18 @@ const restartModalStyles = () => {
 
 const convertDate = (date) => {
 
-    let word = "";
-    let dateAsArray = date.split("-")
+    let fullDate = "";
+    let dateAsArray = date.split("-").reverse();
     let day = dateAsArray[0]
     let monthAsNumber = dateAsArray[1]
     let year = dateAsArray[2]
     
 
     if (monthAsNumber in months) {
-        word = `${day} de ${months[monthAsNumber]} de 20${year}`
+        fullDate = `${day} de ${months[monthAsNumber]} de 20${year}`
     }
 
-    return word.toUpperCase();
+    return fullDate.toUpperCase();
 }
 
 const userDescriptionTemplate = (object) => {
@@ -99,6 +99,8 @@ const getPostDataForModal = (id) => {
             
             //Foto del modal
             $(".post-modal-image").css('background-image', 'url("' + response.image + '")');
+            
+            $(".post-modal-user-image").css('background-image', 'url("' + response.user_profile_image + '")')
 
             //Nombre de usuario en la parte superior del modal
             $(".post-modal-user p").text(response.username)
@@ -120,6 +122,7 @@ const getPostDataForModal = (id) => {
             $(".post-modal-actions").attr("post-id", response.id)
 
             changeHeartIcon(response);
+            changeBookMarkIcon(response)
 
         }
     })
@@ -132,8 +135,9 @@ const showPostOnModal = () => {
     $(document).on("click", ".post-preview", function() {
 
         let id  = $(this).attr("post-id")
+        let userId = $(this).attr("user-id")
 
-        getPostDataForModal(id)
+        getPostDataForModal(id, userId)
 
     })
 }
@@ -175,8 +179,6 @@ const commentPost = () => {
         let id = $(htmlParent).attr("post-id")
         let comment = $("#post-comment-input").val()
         
-        console.log(id)
-
         $.ajax({
             type : "POST",
             dataType : "JSON",
@@ -197,6 +199,21 @@ const commentPost = () => {
     })
 }
 
+
+const savePost = () => {
+    $(document).on("click", ".save-post-btn", function() {
+        let htmlParent = $(this)[0].parentElement.parentElement.parentElement
+
+        let id = $(htmlParent).attr("post-id")
+
+        $.post("/post/save/", {post_id : id}, (response) => {
+
+            getPostDataForModal(id);
+
+        }, "json")
+    })
+}
+
 const clearInput = (inputs) => {
     return inputs.forEach(input => $(input).val(""))
 }
@@ -205,13 +222,29 @@ const validateInput = (inputs) => {
     return inputs.some(input => $(input).val().length <= 0 );
 }
 
-const changeHeartIcon = (response) => {
-    if (response.was_liked) {
-        $(".like-post-btn i").removeClass("fa fa-heart-o")
-        $(".like-post-btn i").addClass("fa fa-heart text-danger")
+const changeHeartIcon = (object) => {
+
+    let button = ".like-post-btn i"
+
+    if (object.was_liked) {
+        $(button).removeClass("fa fa-heart-o")
+        $(button).addClass("fa fa-heart text-danger")
     } else {
-        $(".like-post-btn i").removeClass("fa fa-heart text-danger")
-        $(".like-post-btn i").addClass("fa fa-heart-o")
+        $(button).removeClass("fa fa-heart text-danger")
+        $(button).addClass("fa fa-heart-o")
+    }
+}
+
+const changeBookMarkIcon = (object) => {
+    
+    let button = ".save-post-btn i"
+
+    if (object.was_saved) {
+        $(button).removeClass("fa fa-bookmark-o")
+        $(button).addClass("fa fa-bookmark")
+    } else {
+        $(button).removeClass("fa fa-bookmark")
+        $(button).addClass("fa fa-bookmark-o")
     }
 }
 
@@ -226,6 +259,7 @@ $(document).ready(() => {
     showPostOnModal();
     commentPost();
     likeAPost();
+    savePost();
 
     focusOnCommentInput();
 

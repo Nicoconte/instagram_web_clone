@@ -248,8 +248,116 @@ body {
 .home-container {
     width:100%;
     height:100%;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
     overflow: scroll;
     background-color: rgba(211, 211, 211, 0.1);
+}
+
+.home-content-post-container {
+    width:50%;
+    height:100%;
+}
+
+.home-account-information-container {
+    width:23%;
+    height:100%;
+    margin-right: 30px;
+}
+
+.home-user-image {
+    width:62px;
+    height:62px;
+    border-radius: 50%;
+    display: inline-block;
+      
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; 
+
+}
+
+.home-user-account {
+    width:100%;
+    height:20%;
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+}
+
+.home-user-account-image {
+    width: 20%;
+    height:100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.home-account-names {
+    width: 80%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+
+.home-suggested-accounts {
+    width:100%;
+    height:60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-suggested-accounts-header {
+    width:100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    color:rgb(173, 173, 173);
+}
+
+
+.home-suggested-accounts-body {
+    width:100%;
+    height:50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-suggested-accounts-info {
+    width:100%;
+    height:25%;
+    display: flex;
+    flex-direction: row;
+}
+
+.home-suggested-accounts-user-image {
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    display: inline-block;
+      
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;     
+}
+
+.home-suggested-accounts-user-name {
+    width:90%;
+    height:100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.home-suggested-accounts-user-name a:hover, .home-suggested-accounts-header a:hover {
+    text-decoration: none;
 }
 
 .home-container::-webkit-scrollbar {
@@ -647,6 +755,10 @@ body {
     height: 50px;
     border: 0px;
     font-size:12px;
+}
+
+.post-modal-actions-comment textarea.form-control {
+    height:30px;
 }
 
 @media (min-width:300px) and (max-width:900px) {
