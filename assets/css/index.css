@@ -667,6 +667,10 @@ body {
     overflow-wrap: break-word;
 }
 
+.post-modal-comment-text a:hover {
+    text-decoration:none;
+}
+
 
 .post-modal-people-comment-content {
     width:100%;

@@ -67,7 +67,14 @@ const commentTemplate = (object) => {
             <div class="post-modal-user-image" style="background-image: url('${object.profile}');"></div>                                    
         </div>
         <div class="post-modal-comment-text"> 
-            <p class="mt-2" style="margin-left:13px"> <b class="text-muted">${object.username}</b> ${object.comment}</p>
+            <p class="mt-2" style="margin-left:13px"> 
+                <b>
+                    <a href="/profile/${object.user_id}/" class="text-muted">
+                        ${object.username}
+                    </a>
+                </b> 
+                ${object.comment}
+            </p>
         </div>                             
     </div>
     `

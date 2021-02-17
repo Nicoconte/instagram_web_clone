@@ -8,6 +8,7 @@ def postCommentSerializer(post : PostComment) -> dict:
     profile = UserProfileImage.objects.get(user=user)
 
     comment = {
+        "user_id" : user.id,
         "username" : user.username,
         "profile" : profile.file.url,
         "comment" : post.comment

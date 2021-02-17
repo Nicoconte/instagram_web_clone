@@ -67,7 +67,7 @@ def unfollow_user(request, id):
 
 def get_suggested_accounts(current_user) -> list:
 
-    accounts_list = Account.objects.exclude(user=current_user)[0:5]
+    accounts_list = Account.objects.exclude(user=current_user)[3:8]
 
     accounts = []
 
@@ -81,8 +81,6 @@ def get_suggested_accounts(current_user) -> list:
             "image"  : image.file.url,
             "is_already_follow" : Follower.objects.filter(account=account, user=current_user).exists()
         })
-
-    print(accounts)
 
     return accounts
 
@@ -101,8 +99,8 @@ def render_user_profile(request, id=None):
             user = User.objects.get(id=id)
             account = Account.objects.get(user=user)
             image = UserProfileImage.objects.get(user=user)    
-            is_owner = False    
             is_already_follow = Follower.objects.filter(account=account, user=request.user).exists() #Verifico si ya lo habia seguido 
+            is_owner = False if user != request.user else True 
 
         #De lo contrario renderizamos el nuestro
         else:
